@@ -41,35 +41,3 @@ function App() {
 }
 
 export default App;
-
-  
-//  export default App;
-// function App() {
-//   const [bulb, setbulb] = useState(true)
-//        const bulbOnimg ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQChKCLFJ7Um3LT_CG6zQCgvNZT7uqfZwv1nIARWs_6fA&s"
-//        const bulbOffimg ="https://e7.pngegg.com/pngimages/922/441/png-clipart-creative-bulb-lightbulb-energy-saving-lamps-thumbnail.png"
-//        const HelloWorld = () => {
-//         const [message, setMessage] = useState('Hello World');
-      
-//         const handleClick = () => {
-//           setMessage(message === 'Hello World' ? 'Hello Pakistan' : 'Hello World');
-//         };
-//        return (
-//     <div className="App">
-//       <header className="App-header">
-//       {bulb?  bulbOnimg : bulbOffimg}  
-//         <img width='200' height='230' src={bulb ? bulbOnimg : bulbOffimg} />
-//           <br></br>
-//          <button onClick={()=> setbulb(!bulb)}>On</button>
-//          <button onClick={()=> setbulb(!bulb)}>Off</button>
-//          return (
-//     <div onClick={handleClick}>
-//       <p>{message}</p>
-//     </div>
-//   );
-
-         
-//       </header>
-//     </div>
-//   );
-// }
