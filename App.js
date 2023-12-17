@@ -1,43 +1,76 @@
-
- import React, { useState } from 'react';
-//  import logo from './logo.svg';
- import './App.css';
-
-const bulbOnImg =
-   'https://www.freeiconspng.com/thumbs/lightbulb-png/light-bulb-png-bulb-png1247-12.png';
-   //" https://img.freepik.com/free-photo/depiction-human-brain-intellect-as-lightbulb_23-2150936749.jpg?t=st=1702577003~exp=1702580603~hmac=6012c7efcee2656b6cb9836aa4cbf3ace1a3a37063bbc28269f79dfc9857422a&w=740"
-const bulbOffImg =
-  'https://www.cahillheating.com/sites/cahillheating.com/files/LightBulb.jpg';
+import React, { useState } from 'react';
+import './App.css';
 
 function App() {
-  const [message, setMessage] = useState('Hello World');
-  const [bulbOn, setBulbOn] = useState(true);
+  const [list, setList] = useState([]);
+  const [text, setText] = useState('');
+  const [editIndex, setEditIndex] = useState(null);
+  const [editText, setEditText] = useState('');
 
-  const handleToggle = () => {
-    setMessage(message === 'Hello World' ? 'Hello Pakistan' : 'Hello World');
-  };
-  const handleBulbOn = () => {
-    setBulbOn(true);
-  };
+  function addItem() {
+    const copyList = [...list];
+    copyList.push(text);
+    setList(copyList);
+    setText('');
+  }
 
-  const handleBulbOff = () => {
-    setBulbOn(false);
-  };
+  function updateText(e) {
+    const value = e.target.value;
+    setText(value);
+  }
+
+  function deleteItem(index) {
+    const copyList = [...list];
+    copyList.splice(index, 1);
+    setList(copyList);
+  }
+
+  function editItem(index) {
+    setEditIndex(index);
+    setEditText(list[index]);
+  }
+
+  function updateItem() {
+    const copyList = [...list];
+    copyList[editIndex] = editText;
+    setList(copyList);
+    setEditIndex(null);
+    setEditText('');
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-        <div onClick={handleToggle}>
-          <p>{message}</p>
-        </div>
-        <img  width="200"  height="230"  alt="bulb" src={bulbOn ? bulbOnImg : bulbOffImg}/>  
-        <br />
-        <button onClick={handleToggle}>change text</button>
-        <button onClick={handleBulbOn}>Bulb On</button>
-        <button onClick={handleBulbOff}>Bulb Off</button>
+        <input onChange={updateText} value={text} placeholder="enter any item" />
+        <br /> <br />
+        <button onClick={addItem}>Add</button>
+        <ul>
+          {list.map(function (item, index) {
+            return (
+              <li key={index}>
+                {editIndex === index ? (
+                  <>
+                    <input type="text" value={editText} onChange={(e) => setEditText(e.target.value)}/>
+            
+
+                    <button onClick={updateItem}>Update</button>
+                  </>
+                ) : (
+                  <>
+                    {item}
+                    <button onClick={() => deleteItem(index)}>Delete</button>
+                    <button onClick={() => editItem(index)}>Edit</button>
+                  </>
+                )}
+              </li>
+            );
+          })}
+        </ul>
       </header>
     </div>
   );
 }
 
 export default App;
+
+
